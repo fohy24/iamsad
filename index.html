@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +10,9 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
       --bg: #0f0e17;
@@ -23,7 +26,11 @@
       --radius: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background: var(--bg);
@@ -50,6 +57,7 @@
       pointer-events: none;
       z-index: 0;
     }
+
     body::after {
       content: '';
       position: fixed;
@@ -69,33 +77,6 @@
       max-width: 560px;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-      padding-top: 1rem;
-    }
-
-    .title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      color: var(--text);
-    }
-
-    .title em {
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    .subtitle {
-      margin-top: 0.5rem;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
     /* ── BIG SAD BUTTON ── */
     .sad-btn {
       display: block;
@@ -107,7 +88,7 @@
       color: var(--accent);
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
-      font-style: italic;
+      font-style: bold;
       cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
@@ -118,7 +99,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(232,196,160,0.06), transparent);
+      background: linear-gradient(135deg, rgba(232, 196, 160, 0.06), transparent);
       opacity: 0;
       transition: opacity 0.3s;
     }
@@ -128,50 +109,42 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(232, 196, 160, 0.1);
     }
-    .sad-btn:hover::before { opacity: 1; }
 
-    .sad-btn:active { transform: translateY(0); }
+    .sad-btn:hover::before {
+      opacity: 1;
+    }
+
+    .sad-btn:active {
+      transform: translateY(0);
+    }
 
     /* ── ENTRY FORM ── */
     .entry-form {
       margin-top: 2rem;
       background: var(--surface);
-      border: 1px solid rgba(155,142,196,0.15);
+      border: 1px solid rgba(155, 142, 196, 0.15);
       border-radius: var(--radius);
       padding: 1.8rem;
       animation: slideIn 0.4s ease;
     }
 
     @keyframes slideIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
 
-    .form-label {
-      display: block;
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.8rem;
-    }
-
-    .form-label span {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-style: italic;
-      letter-spacing: 0;
-      text-transform: none;
-      display: block;
-      color: var(--text);
-      margin-top: 0.3rem;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     textarea {
       width: 100%;
       min-height: 120px;
       background: var(--surface2);
-      border: 1px solid rgba(155,142,196,0.2);
+      border: 1px solid rgba(155, 142, 196, 0.2);
       border-radius: 8px;
       color: var(--text);
       font-family: 'DM Mono', monospace;
@@ -184,12 +157,12 @@
     }
 
     textarea:focus {
-      border-color: rgba(155,142,196,0.6);
-      box-shadow: 0 0 0 3px rgba(155,142,196,0.08);
+      border-color: rgba(155, 142, 196, 0.6);
+      box-shadow: 0 0 0 3px rgba(155, 142, 196, 0.08);
     }
 
     textarea::placeholder {
-      color: rgba(167,164,184,0.4);
+      color: rgba(167, 164, 184, 0.4);
     }
 
     .form-actions {
@@ -212,6 +185,7 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .btn-save:hover {
       background: #b4a8d4;
       transform: translateY(-1px);
@@ -220,7 +194,7 @@
     .btn-cancel {
       padding: 0.75rem 1.2rem;
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       color: var(--text-muted);
       font-family: 'DM Mono', monospace;
@@ -228,8 +202,9 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .btn-cancel:hover {
-      border-color: rgba(255,255,255,0.25);
+      border-color: rgba(255, 255, 255, 0.25);
       color: var(--text);
     }
 
@@ -244,7 +219,7 @@
       justify-content: space-between;
       margin-bottom: 1.2rem;
       padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .section-title {
@@ -277,7 +252,7 @@
 
     .entry-card {
       background: var(--surface);
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: var(--radius);
       padding: 1.2rem 1.4rem;
       margin-bottom: 0.8rem;
@@ -286,12 +261,17 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .entry-card:hover {
-      border-color: rgba(155,142,196,0.2);
+      border-color: rgba(155, 142, 196, 0.2);
     }
 
     .entry-meta {
@@ -311,14 +291,17 @@
     .btn-delete {
       background: none;
       border: none;
-      color: rgba(224,108,117,0.4);
+      color: rgba(224, 108, 117, 0.4);
       cursor: pointer;
       font-size: 0.75rem;
       padding: 0.2rem 0.4rem;
       border-radius: 4px;
       transition: color 0.2s;
     }
-    .btn-delete:hover { color: var(--danger); }
+
+    .btn-delete:hover {
+      color: var(--danger);
+    }
 
     .entry-text {
       font-size: 0.85rem;
@@ -334,7 +317,7 @@
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       background: var(--surface2);
-      border: 1px solid rgba(155,142,196,0.3);
+      border: 1px solid rgba(155, 142, 196, 0.3);
       border-radius: 50px;
       padding: 0.65rem 1.4rem;
       font-size: 0.75rem;
@@ -346,6 +329,7 @@
       z-index: 100;
       white-space: nowrap;
     }
+
     .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
@@ -356,7 +340,7 @@
       width: 100%;
       max-width: 560px;
       background: var(--surface);
-      border: 1px solid rgba(232,196,160,0.15);
+      border: 1px solid rgba(232, 196, 160, 0.15);
       border-radius: var(--radius);
       padding: 1rem 1.4rem;
       margin-bottom: 2rem;
@@ -390,6 +374,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div id="installBanner" class="install-banner" style="display:none">
@@ -399,19 +384,10 @@
   </div>
 
   <div class="container">
-    <header>
-      <h1 class="title">a <em>gentle</em> check-in</h1>
-      <p class="subtitle">just for you · private · always here</p>
-    </header>
-
     <button class="sad-btn" id="sadBtn">I'm sad</button>
 
     <div class="entry-form" id="entryForm" style="display:none">
-      <label class="form-label" for="entryText">
-        what have you done to feel happier?
-        <span>or what's on your mind right now</span>
-      </label>
-      <textarea id="entryText" placeholder="write as little or as much as you need…"></textarea>
+      <textarea id="entryText" placeholder="write something maybe?"></textarea>
       <div class="form-actions">
         <button class="btn-save" id="saveBtn">save this moment</button>
         <button class="btn-cancel" id="cancelBtn">cancel</button>
@@ -420,7 +396,7 @@
 
     <section class="entries-section">
       <div class="section-header">
-        <span class="section-title">your moments</span>
+        <span class="section-title">histroy</span>
         <span class="entry-count" id="entryCount"></span>
       </div>
       <div id="entriesList"></div>
@@ -436,14 +412,14 @@
     let entries = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
     // ── Elements ───────────────────────────────────────────
-    const sadBtn      = document.getElementById('sadBtn');
-    const entryForm   = document.getElementById('entryForm');
-    const entryText   = document.getElementById('entryText');
-    const saveBtn     = document.getElementById('saveBtn');
-    const cancelBtn   = document.getElementById('cancelBtn');
+    const sadBtn = document.getElementById('sadBtn');
+    const entryForm = document.getElementById('entryForm');
+    const entryText = document.getElementById('entryText');
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
     const entriesList = document.getElementById('entriesList');
-    const entryCount  = document.getElementById('entryCount');
-    const toast       = document.getElementById('toast');
+    const entryCount = document.getElementById('entryCount');
+    const toast = document.getElementById('toast');
 
     // ── Helpers ────────────────────────────────────────────
     function save() {
@@ -469,7 +445,7 @@
     // ── Render ─────────────────────────────────────────────
     function render() {
       const count = entries.length;
-      entryCount.textContent = count ? `${count} entry${count !== 1 ? 'ies' : 'y'}` : '';
+      entryCount.textContent = count ? `${count} entr${count !== 1 ? 'ies' : 'y'}` : '';
 
       if (!count) {
         entriesList.innerHTML = `
@@ -517,7 +493,6 @@
 
     saveBtn.addEventListener('click', () => {
       const text = entryText.value.trim();
-      if (!text) { showToast('write something first 💙'); return; }
 
       entries.push({
         id: Date.now().toString(),
@@ -574,4 +549,5 @@
     render();
   </script>
 </body>
+
 </html>
