@@ -372,6 +372,42 @@
       padding: 0.2rem !important;
       font-size: 1rem !important;
     }
+
+    /* ── EXPORT ── */
+    .export-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-export {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(155, 142, 196, 0.25);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-export:hover {
+      border-color: rgba(155, 142, 196, 0.6);
+      color: var(--text);
+      background: rgba(155, 142, 196, 0.05);
+    }
+
+    .btn-export:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 
@@ -396,8 +432,13 @@
 
     <section class="entries-section">
       <div class="section-header">
-        <span class="section-title">histroy</span>
+        <span class="section-title">history</span>
         <span class="entry-count" id="entryCount"></span>
+      </div>
+      <div class="export-row">
+        <button class="btn-export" id="exportTxt">↓ .txt</button>
+        <button class="btn-export" id="exportJson">↓ .json</button>
+        <button class="btn-export" id="shareBtn">⤴ share</button>
       </div>
       <div id="entriesList"></div>
     </section>
@@ -519,6 +560,55 @@
         showToast('entry removed');
       }
     });
+
+    // ── Export ────────────────────────────────────────────
+    function downloadFile(content, filename, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function toTxt() {
+      if (!entries.length) { showToast('nothing to export yet'); return; }
+      const sorted = [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const lines = sorted.map(e =>
+        '[' + formatDate(e.date) + ']\n' + (e.text || '(no text)') + '\n'
+      ).join('\n---\n\n');
+      const date = new Date().toISOString().slice(0, 10);
+      downloadFile(lines, 'checkin-' + date + '.txt', 'text/plain');
+      showToast('downloaded .txt 🌿');
+    }
+
+    function toJson() {
+      if (!entries.length) { showToast('nothing to export yet'); return; }
+      const sorted = [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const date = new Date().toISOString().slice(0, 10);
+      downloadFile(JSON.stringify(sorted, null, 2), 'checkin-' + date + '.json', 'application/json');
+      showToast('downloaded .json 🌿');
+    }
+
+    async function shareAll() {
+      if (!entries.length) { showToast('nothing to share yet'); return; }
+      const sorted = [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const text = sorted.map(e =>
+        '[' + formatDate(e.date) + ']\n' + (e.text || '(no text)')
+      ).join('\n\n---\n\n');
+      if (navigator.share) {
+        try { await navigator.share({ title: 'my check-ins', text }); showToast('shared 🌿'); }
+        catch (e) { }
+      } else {
+        await navigator.clipboard.writeText(text);
+        showToast('copied to clipboard 📋');
+      }
+    }
+
+    document.getElementById('exportTxt').addEventListener('click', toTxt);
+    document.getElementById('exportJson').addEventListener('click', toJson);
+    document.getElementById('shareBtn').addEventListener('click', shareAll);
 
     // ── PWA Install ────────────────────────────────────────
     let deferredPrompt;
