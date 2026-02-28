@@ -378,13 +378,14 @@
       display: flex;
       gap: 0.6rem;
       margin-top: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .btn-export {
       flex: 1;
       padding: 0.65rem 1rem;
       background: transparent;
-      border: 1px solid rgba(155, 142, 196, 0.25);
+      border: 1px solid rgba(155,142,196,0.25);
       border-radius: 8px;
       color: var(--text-muted);
       font-family: 'DM Mono', monospace;
@@ -399,9 +400,9 @@
     }
 
     .btn-export:hover {
-      border-color: rgba(155, 142, 196, 0.6);
+      border-color: rgba(155,142,196,0.6);
       color: var(--text);
-      background: rgba(155, 142, 196, 0.05);
+      background: rgba(155,142,196,0.05);
     }
 
     .btn-export:disabled {
@@ -432,7 +433,7 @@
 
     <section class="entries-section">
       <div class="section-header">
-        <span class="section-title">history</span>
+        <span class="section-title">histroy</span>
         <span class="entry-count" id="entryCount"></span>
       </div>
       <div class="export-row">
@@ -599,7 +600,7 @@
       ).join('\n\n---\n\n');
       if (navigator.share) {
         try { await navigator.share({ title: 'my check-ins', text }); showToast('shared 🌿'); }
-        catch (e) { }
+        catch (e) {}
       } else {
         await navigator.clipboard.writeText(text);
         showToast('copied to clipboard 📋');
